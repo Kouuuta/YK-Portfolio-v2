@@ -4,13 +4,13 @@ import { MagneticButton } from "./MagneticButton";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 const socials = [
-  { name: "Instagram", url: "https://instagram.com/yutakoike_design" },
+  { name: "Instagram", url: "https://www.instagram.com/ykoike_/" },
   { name: "GitHub", url: "https://github.com/Kouuuta" },
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/yuta-koike-1139b8301/",
   },
-  { name: "Facebook", url: "https://facebook.com/yuta" },
+  { name: "Facebook", url: "https://www.facebook.com/yuta.koike.14811/" },
 ];
 
 // The four rotating adjectives — chosen to be visually distinct in length
