@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { motion, animate } from "framer-motion";
+
 interface LoaderProps {
   onComplete: () => void;
 }
+
 export function Loader({ onComplete }: LoaderProps) {
   const [count, setCount] = useState(0);
   const name = "YUTA KOIKE";
   const nameChars = name.split("");
+
   useEffect(() => {
     const controls = animate(0, 100, {
       duration: 2,
@@ -18,31 +21,26 @@ export function Loader({ onComplete }: LoaderProps) {
     });
     return controls.stop;
   }, [onComplete]);
+
   return (
     <motion.div
       className="fixed inset-0 z-[99999] bg-ink flex flex-col justify-between p-6 md:p-12 overflow-hidden"
-      initial={{
-        y: 0,
-      }}
-      exit={{
-        y: "-100%",
-      }}
+      initial={{ y: 0 }}
+      exit={{ y: "-100%" }}
       transition={{
         duration: 0.8,
         ease: [0.76, 0, 0.24, 1],
       }}
     >
-      {/* Top row */}
       <div className="flex justify-between items-start w-full">
-        <div className="text-bone text-xs md:text-sm uppercase tracking-widest font-mono">
-          PORTFOLIO 2026 — Please Wait..
+        <div className="text-caption text-bone uppercase tracking-widest font-mono">
+          PORTFOLIO 2026
         </div>
         <div className="text-vermilion text-xs tracking-widest writing-vertical">
           ようこそ
         </div>
       </div>
 
-      {/* Bottom row */}
       <div className="flex justify-between items-end w-full mb-4">
         <div className="font-serif text-4xl md:text-6xl lg:text-8xl tracking-tighter text-bone flex">
           {nameChars.map((char, index) => {
@@ -51,10 +49,7 @@ export function Loader({ onComplete }: LoaderProps) {
             return (
               <motion.span
                 key={index}
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{
                   opacity: isVisible ? 1 : 0,
                   y: isVisible ? 0 : 20,
@@ -76,12 +71,9 @@ export function Loader({ onComplete }: LoaderProps) {
         </div>
       </div>
 
-      {/* Progress bar */}
       <div
         className="absolute bottom-0 left-0 h-1 bg-vermilion"
-        style={{
-          width: `${count}%`,
-        }}
+        style={{ width: `${count}%` }}
       />
     </motion.div>
   );

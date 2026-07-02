@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 
 const KANJI =
   "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
@@ -12,7 +12,7 @@ function ScrambleName() {
 
   useEffect(() => {
     let elapsed = 0;
-    const totalDuration = 1800; // ms
+    const totalDuration = 1800;
     const startTime = performance.now();
 
     const tick = (now: number) => {
@@ -36,7 +36,6 @@ function ScrambleName() {
       }
     };
 
-    // Delay scramble start slightly so it hits after fade-in begins
     const timeout = setTimeout(() => {
       frameRef.current = requestAnimationFrame(tick);
     }, 500);
@@ -66,63 +65,15 @@ function ScrambleName() {
   );
 }
 
-function MagneticLetter({ char, index }: { char: string; index: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 200, damping: 15, mass: 0.5 });
-  const springY = useSpring(y, { stiffness: 200, damping: 15, mass: 0.5 });
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const onMove = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      const radius = 140;
-
-      if (dist < radius) {
-        const force = (1 - dist / radius) * 28;
-        x.set((dx / dist) * force * -1);
-        y.set((dy / dist) * force * -1);
-      } else {
-        x.set(0);
-        y.set(0);
-      }
-    };
-
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
-
-  if (char === " ") return <span className="inline-block w-[0.3em]" />;
-
-  return (
-    <motion.span
-      ref={ref}
-      className="inline-block"
-      style={{ x: springX, y: springY }}
-    >
-      {char}
-    </motion.span>
-  );
-}
-
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen flex flex-col justify-center px-6 pt-20 pb-12 overflow-hidden bg-ink"
+      className="relative min-h-screen flex flex-col justify-center px-gutter pt-20 pb-12 overflow-hidden bg-ink"
     >
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-vermilion/5 rounded-[100%] blur-[120px] pointer-events-none" />
 
-      <div className="max-w-[1400px] mx-auto w-full relative z-10 flex flex-col items-start">
-        {/* Top Meta */}
+      <div className="max-w-content mx-auto w-full relative z-10 flex flex-col items-start">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -133,10 +84,10 @@ export function Hero() {
           }}
           className="mb-8 flex justify-between w-full items-start"
         >
-          <span className="text-xs font-medium text-ash uppercase tracking-widest flex items-center gap-2">
+          <span className="text-caption text-ash uppercase tracking-widest flex items-center gap-2">
             Designer <span className="text-vermilion">×</span> Developer{" "}
-            <span className="w-1 h-1 rounded-full bg-hairline mx-1"></span>{" "}
-            Quezon City, Philppines
+            <span className="w-1 h-1 rounded-full bg-hairline mx-1" />{" "}
+            Quezon City, Philippines
           </span>
           <span className="text-vermilion text-xs tracking-widest writing-vertical opacity-60 hidden md:block">
             小池 ユウタ
@@ -151,12 +102,11 @@ export function Hero() {
             delay: 0.4,
             ease: [0.21, 0.47, 0.32, 0.98],
           }}
-          className="text-[15vw] md:text-[12rem] lg:text-[14rem] font-serif leading-[0.85] tracking-tighter text-bone -ml-2 md:-ml-4 select-none"
+          className="text-display font-serif text-bone -ml-2 md:-ml-4 select-none"
         >
           <ScrambleName />
         </motion.h1>
 
-        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -165,7 +115,7 @@ export function Hero() {
             delay: 0.6,
             ease: [0.21, 0.47, 0.32, 0.98],
           }}
-          className="mt-8 text-2xl md:text-3xl lg:text-4xl text-ash font-serif italic max-w-3xl"
+          className="mt-8 text-subheading text-ash font-serif italic max-w-3xl"
         >
           I enjoy building things that look good and actually work.
         </motion.p>
@@ -189,13 +139,12 @@ export function Hero() {
             delay: 1,
             ease: [0.21, 0.47, 0.32, 0.98],
           }}
-          className="w-full flex flex-wrap justify-between gap-4 text-[10px] md:text-xs font-mono uppercase tracking-widest text-ash"
+          className="w-full flex flex-wrap justify-between gap-4 text-caption font-mono uppercase tracking-widest text-ash"
         >
           <span>Available — From 2026</span>
           <span>Fresh Graduate</span>
         </motion.div>
 
-        {/* Bottom */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -223,7 +172,7 @@ export function Hero() {
           </a>
 
           <div className="md:justify-self-end max-w-sm">
-            <p className="text-sm text-ash leading-relaxed">
+            <p className="text-body text-ash leading-relaxed">
               Building clean, thoughtful, and user-focused digital experiences
               with a passion for creativity and technology.
             </p>
@@ -231,7 +180,6 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

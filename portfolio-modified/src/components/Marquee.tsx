@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+
 interface MarqueeProps {
   text: string;
   direction?: 'left' | 'right';
 }
+
 export function Marquee({ text, direction = 'left' }: MarqueeProps) {
-  // Create a string repeated enough times to fill the screen
   const repeatedText = Array(10).fill(text).join(' ・ ');
+
   return (
     <div className="w-full overflow-hidden border-y border-hairline py-6 bg-ink flex whitespace-nowrap">
       <motion.div
@@ -18,8 +20,8 @@ export function Marquee({ text, direction = 'left' }: MarqueeProps) {
           duration: 20,
           repeat: Infinity,
           ease: 'linear'
-        }}>
-        
+        }}
+      >
         {repeatedText}
       </motion.div>
       <motion.div
@@ -31,10 +33,10 @@ export function Marquee({ text, direction = 'left' }: MarqueeProps) {
           duration: 20,
           repeat: Infinity,
           ease: 'linear'
-        }}>
-        
+        }}
+      >
         {repeatedText}
       </motion.div>
-    </div>);
-
+    </div>
+  );
 }

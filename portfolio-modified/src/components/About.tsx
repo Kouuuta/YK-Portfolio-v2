@@ -9,11 +9,9 @@ export function About() {
     offset: ["start end", "end start"],
   });
 
-  // Parallax: drifts up slower than the page
   const rawY = useTransform(scrollYProgress, [0, 1], [60, -60]);
   const y = useSpring(rawY, { stiffness: 60, damping: 20 });
 
-  // Letter-spacing expands subtly as you scroll
   const letterSpacing = useTransform(
     scrollYProgress,
     [0.2, 0.7],
@@ -21,14 +19,14 @@ export function About() {
   );
 
   return (
-    <section id="about" className="py-32 px-6 bg-ink">
-      <div className="max-w-[1400px] mx-auto">
+    <section id="about" className="py-section px-gutter bg-ink">
+      <div className="max-w-content mx-auto">
         <FadeIn>
           <div className="flex items-end gap-4 mb-20 border-b border-hairline pb-6">
             <span className="text-vermilion text-sm font-medium tracking-widest">
               自己紹介
             </span>
-            <span className="text-ash text-xs font-mono uppercase tracking-widest">
+            <span className="text-caption text-ash font-mono uppercase tracking-widest">
               / 01 — About
             </span>
           </div>
@@ -83,7 +81,6 @@ export function About() {
           </div>
         </div>
 
-        {/* Kinetic pull-quote — parallax + letter-spacing expansion */}
         <div
           ref={quoteRef}
           className="mt-32 pt-16 border-t border-hairline text-center overflow-hidden"
@@ -97,7 +94,7 @@ export function About() {
               how it works."
             </motion.h3>
             <motion.div
-              className="mt-8 text-xs font-mono text-ash uppercase"
+              className="mt-8 text-caption font-mono text-ash uppercase"
               style={{ letterSpacing }}
             >
               — Steve Jobs
@@ -111,11 +108,11 @@ export function About() {
 
 function FactRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="grid grid-cols-3 gap-4 py-6 border-t border-hairline items-start">
-      <div className="col-span-1 text-xs font-mono uppercase tracking-widest text-ash pt-1">
+    <div className="group grid grid-cols-3 gap-4 py-6 border-t border-hairline items-start transition-colors hover:bg-surface/40 px-4 -mx-4">
+      <div className="col-span-1 text-caption font-mono uppercase tracking-widest text-ash pt-1">
         {label}
       </div>
-      <div className="col-span-2 text-sm text-bone leading-relaxed text-right md:text-left">
+      <div className="col-span-2 text-sm text-bone leading-relaxed text-right md:text-left group-hover:text-bone-dark transition-colors">
         {value}
       </div>
     </div>
