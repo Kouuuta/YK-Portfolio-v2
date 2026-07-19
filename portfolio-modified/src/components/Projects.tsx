@@ -19,6 +19,14 @@ const projects = [
     color: "#DC2626",
   },
   {
+    title: "Vault - Finance Tracker App",
+    type: "Web App",
+    desc: "Vault is a personal finance web app I designed and built end-to-end, inspired by the manual-entry model of apps like Lemoneyd. Users track e-wallets, banks, BNPL, and investments in one place, set savings goals, and get daily-accrued interest on savings accounts — all through a deliberately monochrome, ledger-style UI rather than a typical colorful fintech dashboard. Built with Next.js 16, Supabase (Postgres + auth), and Prisma, and installable as a PWA with offline transaction queuing via IndexedDB. Built with OpenCode as an AI pair-programming agent, guided by a structured build spec I authored.",
+    year: "2026",
+    link: "https://vault-yk-app.vercel.app/",
+    color: "#F59E0B",
+  },
+  {
     title: "Truckin Services",
     type: "Website",
     desc: "A logistics-focused web presence for a freight and trucking company. Clean editorial layout with service breakdowns and quote request flow.",
@@ -82,7 +90,10 @@ function AnimatedYear({ year }: { year: string }) {
   }, [year, shouldReduce]);
 
   return (
-    <span ref={ref} className="text-caption font-mono text-vermilion tabular-nums">
+    <span
+      ref={ref}
+      className="text-caption font-mono text-vermilion tabular-nums"
+    >
       {display}
     </span>
   );
@@ -243,7 +254,7 @@ export function Projects() {
                 作品
               </span>
               <span className="text-caption text-ash font-mono uppercase tracking-widest">
-                / 04 — Academic Projects
+                / 04 — Academic Projects / Personal Projects
               </span>
             </div>
             <span className="text-label font-mono text-ash uppercase tracking-widest hidden md:block">
