@@ -4,11 +4,20 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
-    role: "Developer Intern",
+    role: "Software Engineer Intern",
     company: "Mind You",
     period: "May 2026 — Present",
-    desc: "",
-    tech: ["Figma", "React", "Tailwind", "Framer Motion"],
+    desc: "Building an engineering intelligence dashboard — data pipelines that ingest from Hacker News, GitHub Trending, RSS feeds, and repo radar, surfaced through a real-time feed with relevance scoring, engagement analytics, CVE tracking, and watchlist management. Features 3-role RBAC (lead/dev/intern), automated ingestion via GitHub Actions cron, and a briefing dashboard with stat cards, greeting, and trend indicators.",
+    tech: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript 5",
+      "Tailwind CSS 4",
+      "Radix UI",
+      "Framer Motion",
+      "Git",
+      "Netlify",
+    ],
   },
   {
     role: "SAP Academy Delegate",
