@@ -104,8 +104,8 @@ export function Nav() {
         </div>
 
         <a
-          href="/Yuta Koike_Resume.pdf"
-          download="Yuta Koike_Resume.pdf"
+          href="/Yuta Koike__Resume.pdf"
+          download="Yuta Koike__Resume.pdf"
           className="group flex items-center gap-2 border border-hairline rounded-full px-4 py-1.5 bg-surface/50 hover:border-vermilion hover:bg-vermilion/10 transition-all duration-300"
           aria-label="Download Resume PDF"
         >
